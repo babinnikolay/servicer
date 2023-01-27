@@ -21,7 +21,11 @@
     <tr th:each="order : ${orders}">
         <td><span th:text="${order.id}">Id</span></td>
         <td><span th:text="${order.description}">Description</span></td>
+        <td><span th:text="${order.client}">Client</span></td>
+        <td><span th:text="${order.amount}">Amount</span></td>
+        <td><span th:text="${order.date}">Date</span></td>
     </tr>
     </tbody>
 </table>
+<a th:href="@{/orders/new}">Add new order</a>
 </body>

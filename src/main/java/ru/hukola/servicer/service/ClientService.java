@@ -6,6 +6,7 @@ import ru.hukola.servicer.model.Client;
 import ru.hukola.servicer.repository.ClientRepository;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Babin Nikolay

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>New order</title>
+</head>
+
+<body>
+<div th:insert="fragments/general"></div>
+
+<form th:action="@{/orders}" th:method="POST" th:object="${order}">
+
+  <select th:field="*{client}">
+    <option value=""> -- </option>
+    <option th:each="client : ${clients}"
+            th:value="${client.id}"
+            th:utext="${client.name}"/>
+  </select>
+
+  <label for="description">Enter description:</label>
+  <input type="text" th:field="*{description}" id="description">
+  <label for="date">Enter date:</label>
+  <input type="date" th:field="*{date}" id="date">
+  <label for="amount">Enter amount:</label>
+  <input type="number" th:field="*{amount}" id="amount">
+  <input type="submit" value="Create new">
+</form>
+
+</body>
