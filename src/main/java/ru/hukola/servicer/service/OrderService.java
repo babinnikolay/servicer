@@ -2,11 +2,12 @@ package ru.hukola.servicer.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.hukola.servicer.exception.NotFoundException;
+import ru.hukola.servicer.model.Client;
 import ru.hukola.servicer.model.Order;
 import ru.hukola.servicer.model.dto.OrderDTO;
 import ru.hukola.servicer.model.mapper.OrderMapper;
 import ru.hukola.servicer.repository.ClientRepository;
-import ru.hukola.servicer.repository.MemoryOrderRepositoryImpl;
 import ru.hukola.servicer.repository.OrderRepository;
 
 import java.util.List;
@@ -24,9 +25,11 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
-    public void save(OrderDTO orderDTO) {
+    public void save(OrderDTO orderDTO) throws NotFoundException {
         Order order = OrderMapper.toOrder(orderDTO);
-        order.setClient(clientRepository.findById(orderDTO.getClient()));
+        Client client = clientRepository.findById(orderDTO.getClient()).orElseThrow(
+                () -> new NotFoundException(String.format("User with id=%n not found", orderDTO.getClient())));
+        order.setClient(client);
         orderRepository.save(order);
     }
 }

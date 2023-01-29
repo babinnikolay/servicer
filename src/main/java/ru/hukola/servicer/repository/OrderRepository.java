@@ -1,14 +1,13 @@
 package ru.hukola.servicer.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import ru.hukola.servicer.model.Order;
-
-import java.util.List;
 
 /**
  * @author Babin Nikolay
  */
-public interface OrderRepository {
-    List<Order> findAll();
+@Repository
+public interface OrderRepository extends JpaRepository<Order, Integer> {
 
-    void save(Order order);
 }

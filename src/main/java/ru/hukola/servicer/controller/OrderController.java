@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import ru.hukola.servicer.exception.NotFoundException;
 import ru.hukola.servicer.model.Order;
 import ru.hukola.servicer.model.dto.OrderDTO;
 import ru.hukola.servicer.service.ClientService;
@@ -36,7 +37,7 @@ public class OrderController {
     }
 
     @PostMapping
-    public String newOrder(@ModelAttribute("order") OrderDTO order) {
+    public String newOrder(@ModelAttribute("order") OrderDTO order) throws NotFoundException {
         orderService.save(order);
         return "redirect:/orders";
     }
