@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit order</title>
+</head>
+
+<body>
+<div th:insert="fragments/general"></div>
+
+<form th:action="@{/orders/{id}/edit(id=${order.id})}" th:method="POST" th:object="${order}">
+
+  <label for="client">Client:</label>
+  <select th:field="*{client}" id="client">
+    <option th:value="*{client}"> -- </option>
+    <option th:each="client : ${clients}"
+            th:value="${client.id}"
+            th:text="${client.name}"/>
+  </select>
+
+  <label for="description">Enter description:</label>
+  <input type="text" th:field="*{description}" id="description">
+  <label for="date">Enter date:</label>
+  <input type="text" th:field="*{date}" id="date">
+  <label for="amount">Enter amount:</label>
+  <input type="number" th:field="*{amount}" id="amount">
+  <label for="paid">Paid:</label>
+  <input type="checkbox" th:field="*{paid}" id="paid">
+  <input type="submit" value="Save">
+</form>
+
+</body>

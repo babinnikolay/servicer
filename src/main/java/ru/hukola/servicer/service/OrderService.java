@@ -32,4 +32,11 @@ public class OrderService {
         order.setClient(client);
         orderRepository.save(order);
     }
+
+    public OrderDTO findById(int id) throws NotFoundException {
+        Order order = orderRepository.findById(id).orElseThrow(
+                () -> new NotFoundException(String.format("User with id=%s not found", id))
+        );
+        return OrderMapper.toOrderDto(order);
+    }
 }

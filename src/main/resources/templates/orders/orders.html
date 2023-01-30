@@ -12,6 +12,11 @@
     <tr>
         <th>Id</th>
         <th>Description</th>
+        <th>Client</th>
+        <th>Amount</th>
+        <th>Date</th>
+        <th>Paid</th>
+        <th>Edit order</th>
     </tr>
     </thead>
     <tbody>
@@ -21,9 +26,11 @@
     <tr th:each="order : ${orders}">
         <td><span th:text="${order.id}">Id</span></td>
         <td><span th:text="${order.description}">Description</span></td>
-        <td><span th:text="${order.client}">Client</span></td>
+        <td><span th:text="${order.client.name}">Client</span></td>
         <td><span th:text="${order.amount}">Amount</span></td>
         <td><span th:text="${order.date}">Date</span></td>
+        <td><span th:text="${order.paid}">Paid</span></td>
+        <td><a th:href="@{/orders/{id}/edit (id=${order.id})}">edit</a></td>
     </tr>
     </tbody>
 </table>

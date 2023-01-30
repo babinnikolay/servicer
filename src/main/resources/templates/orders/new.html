@@ -6,7 +6,7 @@
 </head>
 
 <body>
-<div th:insert="fragments/general"></div>
+<div th:insert="fragments :: general"></div>
 
 <form th:action="@{/orders}" th:method="POST" th:object="${order}">
 

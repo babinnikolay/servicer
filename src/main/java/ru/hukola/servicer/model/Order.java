@@ -2,6 +2,7 @@ package ru.hukola.servicer.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -24,4 +25,5 @@ public class Order {
     @OneToOne
     private Client client;
     private double amount;
+    private boolean paid;
 }

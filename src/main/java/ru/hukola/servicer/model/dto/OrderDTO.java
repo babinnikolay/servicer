@@ -1,9 +1,7 @@
 package ru.hukola.servicer.model.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import ru.hukola.servicer.model.Client;
 
 import java.time.LocalDate;
@@ -15,10 +13,13 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class OrderDTO {
     private int id;
     private String description;
+    @DateTimeFormat(pattern="dd.MM.yyyy")
     private LocalDate date;
     private int client;
     private double amount;
+    private boolean paid;
 }

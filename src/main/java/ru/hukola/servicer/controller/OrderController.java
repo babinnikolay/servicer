@@ -3,10 +3,7 @@ package ru.hukola.servicer.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.hukola.servicer.exception.NotFoundException;
 import ru.hukola.servicer.model.Order;
 import ru.hukola.servicer.model.dto.OrderDTO;
@@ -40,6 +37,14 @@ public class OrderController {
     public String newOrder(@ModelAttribute("order") OrderDTO order) throws NotFoundException {
         orderService.save(order);
         return "redirect:/orders";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String edit(Model model, @PathVariable int id) throws NotFoundException {
+        OrderDTO order = orderService.findById(id);
+        model.addAttribute("order", order);
+        model.addAttribute("clients", clientService.findAll());
+        return "orders/edit";
     }
 
 
