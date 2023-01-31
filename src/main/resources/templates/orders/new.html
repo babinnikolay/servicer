@@ -6,15 +6,15 @@
 </head>
 
 <body>
-<div th:insert="fragments :: general"></div>
+<div th:insert="fragments/general"></div>
 
 <form th:action="@{/orders}" th:method="POST" th:object="${order}">
 
-  <select th:field="*{client}">
-    <option value=""> -- </option>
+  <select th:field="*{clientId}">
+    <option value="0"> -- </option>
     <option th:each="client : ${clients}"
             th:value="${client.id}"
-            th:utext="${client.name}"/>
+            th:text="${client.name}"/>
   </select>
 
   <label for="description">Enter description:</label>

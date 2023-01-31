@@ -8,24 +8,26 @@
 <body>
 <div th:insert="fragments/general"></div>
 
-<form th:action="@{/orders/{id}/edit(id=${order.id})}" th:method="POST" th:object="${order}">
+<form th:action="@{/orders/{id}/edit(id=${order.getId()})}" th:method="POST" th:object="${order}">
 
-  <label for="client">Client:</label>
-  <select th:field="*{client}" id="client">
-    <option th:value="*{client}"> -- </option>
+  <select th:field="*{clientId}">
+    <option value="0"> -- </option>
     <option th:each="client : ${clients}"
             th:value="${client.id}"
             th:text="${client.name}"/>
   </select>
 
-  <label for="description">Enter description:</label>
+  <label for="description">Description:</label>
   <input type="text" th:field="*{description}" id="description">
-  <label for="date">Enter date:</label>
-  <input type="text" th:field="*{date}" id="date">
-  <label for="amount">Enter amount:</label>
+  <label for="date">Date:</label>
+
+  <input type="date" th:field="*{{date}}" id="date">
+
+  <label for="amount">Amount:</label>
   <input type="number" th:field="*{amount}" id="amount">
   <label for="paid">Paid:</label>
   <input type="checkbox" th:field="*{paid}" id="paid">
+
   <input type="submit" value="Save">
 </form>
 

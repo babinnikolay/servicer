@@ -3,8 +3,6 @@ package ru.hukola.servicer.model.mapper;
 import ru.hukola.servicer.model.Order;
 import ru.hukola.servicer.model.dto.OrderDTO;
 
-import java.util.Optional;
-
 /**
  * @author Babin Nikolay
  */
@@ -16,6 +14,7 @@ public class OrderMapper {
                 .date(orderDTO.getDate())
                 .description(orderDTO.getDescription())
                 .paid(orderDTO.isPaid())
+                .id(orderDTO.getId())
                 .build();
     }
 
@@ -25,7 +24,9 @@ public class OrderMapper {
                 .date(order.getDate())
                 .description(order.getDescription())
                 .paid(order.isPaid())
-                .client(order.getClient().getId())
+                .clientId(order.getClient().getId())
+                .clientName(order.getClient().getName())
+                .id(order.getId())
                 .build();
     }
 }

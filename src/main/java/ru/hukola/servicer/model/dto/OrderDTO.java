@@ -17,9 +17,10 @@ import java.time.LocalDate;
 public class OrderDTO {
     private int id;
     private String description;
-    @DateTimeFormat(pattern="dd.MM.yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
-    private int client;
+    private int clientId;
+    private String clientName;
     private double amount;
     private boolean paid;
 }

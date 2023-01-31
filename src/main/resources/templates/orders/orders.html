@@ -26,9 +26,9 @@
     <tr th:each="order : ${orders}">
         <td><span th:text="${order.id}">Id</span></td>
         <td><span th:text="${order.description}">Description</span></td>
-        <td><span th:text="${order.client.name}">Client</span></td>
+        <td><span th:text="${order.clientName}">Client</span></td>
         <td><span th:text="${order.amount}">Amount</span></td>
-        <td><span th:text="${order.date}">Date</span></td>
+        <td><span th:text="${#temporals.format(order.date, 'dd.MM.yyyy')}">Date</span></td>
         <td><span th:text="${order.paid}">Paid</span></td>
         <td><a th:href="@{/orders/{id}/edit (id=${order.id})}">edit</a></td>
     </tr>

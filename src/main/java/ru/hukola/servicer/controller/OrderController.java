@@ -28,7 +28,7 @@ public class OrderController {
 
     @GetMapping("/new")
     public String showNewForm(Model model) {
-        model.addAttribute("order", new Order());
+        model.addAttribute("order", new OrderDTO());
         model.addAttribute("clients", clientService.findAll());
         return "orders/new";
     }
@@ -47,5 +47,9 @@ public class OrderController {
         return "orders/edit";
     }
 
-
+    @PostMapping("/{id}/edit")
+    public String edit(@ModelAttribute("order") OrderDTO order, @PathVariable int id) throws NotFoundException {
+        orderService.update(id, order);
+        return "redirect:/orders";
+    }
 }
