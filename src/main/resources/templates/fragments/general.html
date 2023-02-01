@@ -1,8 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <body>
     <p>
         <a th:href="@{/orders}">Orders</a>
         <a th:href="@{/clients}">Clients</a>
+        <a th:href="@{/login}">Login</a>
+        <span th:remove="tag" sec:authentication="name"></span>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
     </p>
 </body>
