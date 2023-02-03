@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+
+<body>
+<span>
+    <div th:insert="~{fragments/general}"></div>
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Active</th>
+            <th>Roles</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${siteUsers.isEmpty()}">
+            <td colspan="2">No users available</td>
+        </tr>
+        <tr th:each="siteUser : ${siteUsers}">
+            <td><span th:text="${siteUser.id}">Id</span></td>
+            <td><span th:text="${siteUser.username}">Name</span></td>
+            <td><span th:text="${siteUser.active}">Active</span></td>
+            <td><span th:text="${siteUser.roles}">Roles</span></td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/users/new}">Add new user</a>
+</span>
+</body>

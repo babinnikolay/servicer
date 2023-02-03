@@ -5,10 +5,9 @@
     <p>
         <a th:href="@{/orders}">Orders</a>
         <a th:href="@{/clients}">Clients</a>
-        <a th:href="@{/login}">Login</a>
-        <span th:remove="tag" sec:authentication="name"></span>
-        <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Sign Out"/>
-        </form>
+        <a th:href="@{/users}" sec:authorize="hasAuthority('ADMIN')">Users</a>
+        <a th:href="@{/login}" sec:authorize="!isAuthenticated()">Login</a>
+        <span th:remove="tag" sec:authentication="name" sec:authorize="isAuthenticated()"></span>
+        <a th:href="@{/logout}" sec:authorize="isAuthenticated()">Sign out</a>
     </p>
 </body>

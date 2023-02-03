@@ -5,8 +5,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * @author Babin Nikolay
@@ -17,9 +19,9 @@ public class SiteUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // siteUser.getRoles()
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(SiteRole.USER.name());
-        return Arrays.asList(authority);
+        return siteUser.getRoles()
+                .stream()
+                .map(r -> new SimpleGrantedAuthority(r.name())).toList();
     }
 
     @Override

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>New user</title>
+</head>
+
+<body>
+<div th:insert="fragments/general"></div>
+
+<form th:action="@{/users}" th:method="POST" th:object="${user}">
+
+  <select th:field="*{roles}" multiple="multiple">
+    <option th:each="role : ${rolesList}"
+            th:text="${role.name}"
+            th:value="${role.name}"
+    />
+  </select>
+
+  <label for="description">Enter name:</label>
+  <input type="text" th:field="*{username}" id="description">
+  <label for="date">Set active:</label>
+  <input type="checkbox" th:field="*{active}" id="date">
+  <label for="amount">Enter password:</label>
+  <input type="password" th:field="*{password}" id="amount">
+  <input type="submit" value="Create new">
+</form>
+
+</body>
