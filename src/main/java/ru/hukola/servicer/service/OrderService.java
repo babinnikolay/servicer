@@ -5,10 +5,12 @@ import org.springframework.stereotype.Service;
 import ru.hukola.servicer.exception.NotFoundException;
 import ru.hukola.servicer.model.Client;
 import ru.hukola.servicer.model.Order;
+import ru.hukola.servicer.model.SiteUser;
 import ru.hukola.servicer.model.dto.OrderDTO;
 import ru.hukola.servicer.model.mapper.OrderMapper;
 import ru.hukola.servicer.repository.ClientRepository;
 import ru.hukola.servicer.repository.OrderRepository;
+import ru.hukola.servicer.repository.SiteUserRepository;
 
 import java.util.List;
 
@@ -20,16 +22,21 @@ import java.util.List;
 public class OrderService {
     private final OrderRepository orderRepository;
     private final ClientRepository clientRepository;
+    private final SiteUserRepository siteUserRepository;
 
     public List<OrderDTO> findAll() {
         return orderRepository.findAll().stream().map(OrderMapper::toOrderDto).toList();
     }
 
-    public void save(OrderDTO orderDTO) throws NotFoundException {
+    public void save(OrderDTO orderDTO, int userId) throws NotFoundException {
         Order order = OrderMapper.toOrder(orderDTO);
         Client client = clientRepository.findById(orderDTO.getClientId()).orElseThrow(
-                () -> new NotFoundException(String.format("User with id=%n not found", orderDTO.getClientId())));
+                () -> new NotFoundException(String.format("Client with id=%n not found", orderDTO.getClientId())));
+        SiteUser siteUser = siteUserRepository.findById(userId).orElseThrow(
+                () -> new NotFoundException(String.format("User with id=%n not found", userId))
+        );
         order.setClient(client);
+        order.setCreator(siteUser);
         orderRepository.save(order);
     }
 

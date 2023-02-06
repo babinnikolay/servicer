@@ -26,4 +26,6 @@ public class Order {
     private Client client;
     private double amount;
     private boolean paid;
+    @OneToOne
+    private SiteUser creator;
 }

@@ -26,6 +26,8 @@ public class OrderMapper {
                 .paid(order.isPaid())
                 .clientId(order.getClient().getId())
                 .clientName(order.getClient().getName())
+                .creatorId(order.getCreator().getId())
+                .creatorName(order.getCreator().getUsername())
                 .id(order.getId())
                 .build();
     }

@@ -21,6 +21,8 @@ public class OrderDTO {
     private LocalDate date;
     private int clientId;
     private String clientName;
+    private int creatorId;
+    private String creatorName;
     private double amount;
     private boolean paid;
 }

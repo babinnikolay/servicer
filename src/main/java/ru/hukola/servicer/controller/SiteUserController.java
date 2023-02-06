@@ -3,10 +3,7 @@ package ru.hukola.servicer.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.hukola.servicer.exception.NotFoundException;
 import ru.hukola.servicer.model.SiteRole;
 import ru.hukola.servicer.model.SiteUser;
@@ -40,6 +37,20 @@ public class SiteUserController {
     @PostMapping
     public String newOrder(@ModelAttribute("user") SiteUserDto userDto) throws NotFoundException {
         siteUserService.save(userDto);
+        return "redirect:/users";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String edit(Model model, @PathVariable int id) throws NotFoundException {
+        SiteUserDto user = siteUserService.findById(id);
+        model.addAttribute("siteUser", user);
+        model.addAttribute("rolesList", SiteRole.values());
+        return "users/edit";
+    }
+
+    @PostMapping("/{id}/edit")
+    public String edit(@ModelAttribute("siteUser") SiteUserDto siteUser, @PathVariable int id) throws NotFoundException {
+        siteUserService.update(id, siteUser);
         return "redirect:/users";
     }
 

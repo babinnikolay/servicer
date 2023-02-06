@@ -27,6 +27,7 @@
             <td><span th:text="${siteUser.username}">Name</span></td>
             <td><span th:text="${siteUser.active}">Active</span></td>
             <td><span th:text="${siteUser.roles}">Roles</span></td>
+            <td><a th:href="@{/users/{id}/edit (id=${siteUser.id})}">edit</a></td>
         </tr>
         </tbody>
     </table>
