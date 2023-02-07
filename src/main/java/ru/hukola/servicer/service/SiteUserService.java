@@ -10,7 +10,6 @@ import ru.hukola.servicer.model.mapper.SiteUserMapper;
 import ru.hukola.servicer.repository.SiteUserRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author Babin Nikolay
