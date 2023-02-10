@@ -4,6 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import ru.hukola.servicer.model.Client;
 
+import java.util.List;
+
 /**
  * @author Babin Nikolay
  */

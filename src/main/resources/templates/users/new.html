@@ -1,29 +1,50 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>New user</title>
+    <meta charset="UTF-8">
+    <title>New user</title>
 </head>
-
 <body>
 <div th:insert="fragments/general"></div>
-
 <form th:action="@{/users}" th:method="POST" th:object="${user}">
-
-  <select th:field="*{roles}" multiple="multiple">
-    <option th:each="role : ${rolesList}"
-            th:text="${role.name}"
-            th:value="${role.name}"
-    />
-  </select>
-
-  <label for="description">Enter name:</label>
-  <input type="text" th:field="*{username}" id="description">
-  <label for="date">Set active:</label>
-  <input type="checkbox" th:field="*{active}" id="date">
-  <label for="amount">Enter password:</label>
-  <input type="password" th:field="*{password}" id="amount">
-  <input type="submit" value="Create new">
+    <div class="container mt-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-6">
+                <div class="card px-5 py-5" id="form1">
+                    <div class="form-data">
+                        <h3>New user</h3>
+                        <div class="mb-3">
+                          <label class="form-label select-label" for="roles">Roles:</label>
+                          <select th:field="*{roles}" multiple id="roles" class="form-select">
+                                <option th:each="role : ${rolesList}"
+                                        th:text="${role.name}"
+                                        th:value="${role.name}"
+                                />
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="username">Name:</label>
+                            <input type="text" class="form-control" th:field="*{username}" id="username">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="password">Password:</label>
+                            <input type="password" class="form-control" th:field="*{password}" id="password">
+                        </div>
+                        <div class="mb-3">
+                            <input type="checkbox" class="form-check-input" th:field="*{active}" id="active">
+                            <label class="form-label" for="active">Active:</label>
+                        </div>
+                        <div class="mb-3">
+                            <input type="submit" value="Create" class="btn btn-primary">
+                            <a th:href="@{/users}">
+                                <input type="button" class="btn btn-secondary" value="Cancel"/>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </form>
 
 </body>

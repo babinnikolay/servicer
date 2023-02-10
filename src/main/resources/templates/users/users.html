@@ -11,9 +11,11 @@
 <span>
     <div th:insert="~{fragments/general}"></div>
     <h3 for="orders-table">Users list</h3>
+    <div class="container-fluid">
     <form name="add" th:action="@{/users/new}" method="get">
       <input type="submit" class="btn btn-primary" value="Add new"/>
    </form>
+    </div>
     <table class="table table-hover">
         <thead>
         <tr>

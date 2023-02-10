@@ -1,6 +1,7 @@
 package ru.hukola.servicer.service;
 
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import ru.hukola.servicer.exception.NotFoundException;
 import ru.hukola.servicer.model.Client;
@@ -24,8 +25,15 @@ public class OrderService {
     private final ClientRepository clientRepository;
     private final SiteUserRepository siteUserRepository;
 
-    public List<OrderDTO> findAll() {
-        return orderRepository.findAll().stream().map(OrderMapper::toOrderDto).toList();
+    public List<OrderDTO> findAll(boolean onlyUnpaid) {
+        List<Order> list;
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        if (onlyUnpaid) {
+            list = orderRepository.findAllByPaidNot(onlyUnpaid, sort);
+        } else {
+            list = orderRepository.findAll(sort);
+        }
+        return list.stream().map(OrderMapper::toOrderDto).toList();
     }
 
     public void save(OrderDTO orderDTO, int userId) throws NotFoundException {

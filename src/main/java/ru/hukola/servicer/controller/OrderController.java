@@ -10,6 +10,7 @@ import ru.hukola.servicer.exception.NotFoundException;
 import ru.hukola.servicer.model.Order;
 import ru.hukola.servicer.model.SiteUserDetails;
 import ru.hukola.servicer.model.dto.OrderDTO;
+import ru.hukola.servicer.model.dto.OrderFilter;
 import ru.hukola.servicer.service.ClientService;
 import ru.hukola.servicer.service.OrderService;
 
@@ -26,8 +27,11 @@ public class OrderController {
     private final ClientService clientService;
 
     @GetMapping
-    public String showOrders(Model model) {
-        model.addAttribute("orders", orderService.findAll());
+    public String showOrders(@RequestParam(value = "onlyUnpaid", required = false) boolean onlyUnpaid, Model model) {
+        model.addAttribute("orders", orderService.findAll(onlyUnpaid));
+        OrderFilter filter = new OrderFilter();
+        filter.setOnlyUnpaid(onlyUnpaid);
+        model.addAttribute("filter", filter);
         return "orders/orders";
     }
 

@@ -12,9 +12,21 @@
 <span>
     <div th:insert="~{fragments/general}"></div>
     <h3 for="orders-table">Orders list</h3>
-    <form name="add" th:action="@{/orders/new}" method="get">
-      <input type="submit" class="btn btn-primary" value="Add new"/>
-   </form>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+                <form name="add" th:action="@{/orders/new}" method="get">
+                  <input type="submit" class="btn btn-primary" value="Add new"/>
+               </form>
+                <form name="filter" th:action="@{/orders}" method="get" th:object="${filter}">
+
+                        <input type="checkbox" class="form-check-input mt-2" th:field="*{onlyUnpaid}" id="onlyUnpaid">
+                        <label for="onlyUnpaid" class="me-3 ms-1">Only unpaid</label>
+
+                        <input type="submit" value="Refresh" class="btn btn-outline-secondary">
+                </form>
+        </div>
+    </nav>
     <table class="table table-hover" id="orders-table">
         <thead>
         <tr>

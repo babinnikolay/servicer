@@ -1,17 +1,32 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>New client</title>
+    <meta charset="UTF-8">
+    <title>New client</title>
 </head>
-
 <body>
 <div th:insert="fragments/general"></div>
-
 <form th:action="@{/clients}" th:method="POST" th:object="${client}">
-  <label for="name">Enter name:</label>
-  <input type="text" th:field="*{name}" id="name">
-  <input type="submit" value="Create new">
+    <div class="container mt-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-6">
+                <div class="card px-5 py-5" id="form1">
+                    <div class="form-data">
+                        <h3>New client</h3>
+                        <div class="mb-3">
+                            <label class="form-label" for="name">Name</label>
+                            <input type="text" th:field="*{name}" id="name" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <input type="submit" value="Create" class="btn btn-primary">
+                            <a th:href="@{/clients}">
+                                <input type="button" class="btn btn-secondary" value="Cancel"/>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </form>
-
 </body>
