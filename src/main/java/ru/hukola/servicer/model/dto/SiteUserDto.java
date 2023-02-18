@@ -1,6 +1,5 @@
 package ru.hukola.servicer.model.dto;
 
-import jakarta.persistence.*;
 import lombok.*;
 import ru.hukola.servicer.model.SiteRole;
 

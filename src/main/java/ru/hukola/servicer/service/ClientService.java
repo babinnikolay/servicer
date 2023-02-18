@@ -8,7 +8,6 @@ import ru.hukola.servicer.model.mapper.ClientMapper;
 import ru.hukola.servicer.repository.ClientRepository;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * @author Babin Nikolay

@@ -9,3 +9,16 @@ services:
       POSTGRES_DB: "servicer"
       POSTGRES_USER: "root"
       POSTGRES_PASSWORD: "root"
+  app:
+    build: .
+    image: servicer-app
+    container_name: servicer-app
+    ports:
+      - "8100:8100"
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/servicer
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SPRING_DATASOURCE_DRIVERCLASSNAME=org.postgresql.Driver

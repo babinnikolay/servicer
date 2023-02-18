@@ -39,9 +39,9 @@ public class OrderService {
     public void save(OrderDTO orderDTO, int userId) throws NotFoundException {
         Order order = OrderMapper.toOrder(orderDTO);
         Client client = clientRepository.findById(orderDTO.getClientId()).orElseThrow(
-                () -> new NotFoundException(String.format("Client with id=%n not found", orderDTO.getClientId())));
+                () -> new NotFoundException(String.format("Client with id=%d not found", orderDTO.getClientId())));
         SiteUser siteUser = siteUserRepository.findById(userId).orElseThrow(
-                () -> new NotFoundException(String.format("User with id=%n not found", userId))
+                () -> new NotFoundException(String.format("User with id=%d not found", userId))
         );
         order.setClient(client);
         order.setCreator(siteUser);
@@ -59,7 +59,7 @@ public class OrderService {
                 () -> new NotFoundException(String.format("Order with id=%s not found", id))
         );
         Client client = clientRepository.findById(orderDTO.getClientId()).orElseThrow(
-                () -> new NotFoundException(String.format("User with id=%n not found", orderDTO.getClientId())));
+                () -> new NotFoundException(String.format("User with id=%d not found", orderDTO.getClientId())));
         order.setAmount(orderDTO.getAmount());
         order.setDescription(orderDTO.getDescription());
         order.setDate(orderDTO.getDate());

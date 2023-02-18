@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.hukola.servicer.exception.NotFoundException;
 import ru.hukola.servicer.model.SiteRole;
 import ru.hukola.servicer.model.SiteUser;
-import ru.hukola.servicer.model.dto.OrderDTO;
 import ru.hukola.servicer.model.dto.SiteUserDto;
 import ru.hukola.servicer.service.SiteUserService;
 
@@ -35,7 +34,7 @@ public class SiteUserController {
     }
 
     @PostMapping
-    public String newOrder(@ModelAttribute("user") SiteUserDto userDto) throws NotFoundException {
+    public String newOrder(@ModelAttribute("user") SiteUserDto userDto) {
         siteUserService.save(userDto);
         return "redirect:/users";
     }

@@ -2,19 +2,15 @@ package ru.hukola.servicer.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.hukola.servicer.exception.NotFoundException;
-import ru.hukola.servicer.model.Order;
 import ru.hukola.servicer.model.SiteUserDetails;
 import ru.hukola.servicer.model.dto.OrderDTO;
 import ru.hukola.servicer.model.dto.OrderFilter;
 import ru.hukola.servicer.service.ClientService;
 import ru.hukola.servicer.service.OrderService;
-
-import java.security.Principal;
 
 /**
  * @author Babin Nikolay

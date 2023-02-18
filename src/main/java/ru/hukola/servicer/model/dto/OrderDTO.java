@@ -2,7 +2,6 @@ package ru.hukola.servicer.model.dto;
 
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
-import ru.hukola.servicer.model.Client;
 
 import java.time.LocalDate;
 
